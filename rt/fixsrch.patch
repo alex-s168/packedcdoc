@@ -1,0 +1,22 @@
+--- a/src.h	2024-04-22 14:23:45.617813900 +0200
++++ b/src.h	2024-04-22 14:25:27.352718100 +0200
+@@ -47,6 +47,7 @@
+ #include <complex.h>
+ typedef _Fcomplex GoComplex64;
+ typedef _Dcomplex GoComplex128;
++#elif defined(__TINYC__)
+ #else
+ typedef float _Complex GoComplex64;
+ typedef double _Complex GoComplex128;
+@@ -74,7 +75,10 @@
+ extern "C" {
+ #endif
+ 
+-extern __declspec(dllexport) char* MdRender(char* x, GoInt wordWrap);
++#ifndef __TINYC__
++extern __declspec(dllexport)
++#endif
++char* MdRender(char* x, GoInt wordWrap);
+ 
+ #ifdef __cplusplus
+ }
