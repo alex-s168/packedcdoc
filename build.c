@@ -2,7 +2,7 @@
 
 /* ========================================================================= */
 
-#define target_rt(renderer) shell("cd rt && ./build.sh " renderer)
+#define target_rt(renderer) shell("cd rt && CC=" CC " CFLAGS=" CC_ARGS " ./build.sh " renderer)
 
 enum CompileResult target_rt_glamour() {
     return target_rt("glamour");

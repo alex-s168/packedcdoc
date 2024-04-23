@@ -3,8 +3,8 @@ set -e
 if [ "$1" == "glamour" ]; then
     echo "glamour markdown renderer"
     go build -buildmode=c-archive
-    patch -u < fixsrch.patch
-    tcc -DUSE_GLAMOUR -c rt.c
+    patch -u < fixsrch.patch 1>/dev/null 2>/dev/null || true
+    $CC -DUSE_GLAMOUR $CFLAGS -c rt.c
     cp src.a rt.a
     ar -r rt.a rt.o
     echo "generated rt.a"
